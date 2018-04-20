@@ -164,17 +164,18 @@ namespace System.IO
         /// <returns></returns>
         public override string ToString()
         {
-            if (_bytes == 0)
+            var absoluteBytes = Math.abs(_bytes);
+            if (absoluteBytes == 0)
                 return "0 KB";
-            if (_bytes >= BYTES_PER_TERABYTE)
+            if (absoluteBytes >= BYTES_PER_TERABYTE)
                 return Math.Round(TeraBytes, 2) + " TB";
-            if (_bytes >= BYTES_PER_GIGABYTE)
+            if (absoluteBytes >= BYTES_PER_GIGABYTE)
                 return Math.Round(GigaBytes, 2) + " GB";
-            if (_bytes >= BYTES_PER_MEGABYTE)
+            if (absoluteBytes >= BYTES_PER_MEGABYTE)
                 return Math.Round(MegaBytes, 2) + " MB";
-            if (_bytes >= BYTES_PER_KILABYTE)
+            if (absoluteBytes >= BYTES_PER_KILABYTE)
                 return Math.Round(KilaBytes, 2) + " KB";
-            if (_bytes >= 1)
+            if (absoluteBytes >= 1)
                 return _bytes.ToString(NumberFormatInfo.InvariantInfo) + " B";
 
             return Bits.ToString(NumberFormatInfo.InvariantInfo) + " bits";
